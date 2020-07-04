@@ -120,8 +120,8 @@ fruit &lt;- c("apple", "orange", "pear")
 str_view(fruit, ".e$")
 ```
 
-<div id="htmlwidget-804517e9831eb5dfe7b3" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-804517e9831eb5dfe7b3">{"x":{"html":"<ul>\n  <li>app<span class='match'>le<\/span><\/li>\n  <li>oran<span class='match'>ge<\/span><\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-1ad601b78d3e648cf8d6" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1ad601b78d3e648cf8d6">{"x":{"html":"<ul>\n  <li>app<span class='match'>le<\/span><\/li>\n  <li>oran<span class='match'>ge<\/span><\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -523,8 +523,8 @@ washington_count
 washington_count %&gt;%
   filter(n &gt; 9) %&gt;%
   mutate(word = reorder(word, n)) %&gt;%
-* ggplot(aes(y = word, x = n)) +
-* geom_col() +
+  ggplot(aes(y = word, x = n)) + 
+  geom_col() + 
   ylab(NULL) 
 ```
 ]
@@ -760,7 +760,7 @@ frequency &lt;- bind_rows(washington_words, jefferson_words) %&gt;%
 
 ```r
 set.seed(234)
-*slice_sample(frequency, n = 6)
+*slice_sample(frequency, n = 6) # dplyr 1.0.0
 ```
 
 ```
@@ -926,10 +926,10 @@ washington_words %&gt;%
   count(word, sentiment, sort = TRUE) %&gt;%
   ungroup() %&gt;%
   group_by(sentiment) %&gt;%
-* slice_max(order_by = n, n = 5) %&gt;%
+* slice_max(order_by = n, n = 5) %&gt;% # dplyr 1.0.0
   ungroup() %&gt;%
   mutate(word = reorder(word, n)) %&gt;%
-  ggplot(aes(y = word, x = n, fill = sentiment)) +
+* ggplot(aes(y = word, x = n, fill = sentiment)) + # ggplot2 3.3.0
     geom_col(show.legend = FALSE) +
     facet_wrap(~sentiment, scales = "free_y") +
     labs(x = "Contribution to sentiment",

@@ -371,8 +371,8 @@ washington_count
 washington_count %>%
   filter(n > 9) %>%
   mutate(word = reorder(word, n)) %>%
-  ggplot(aes(y = word, x = n)) + #<<
-  geom_col() + #<<
+  ggplot(aes(y = word, x = n)) + 
+  geom_col() + 
   ylab(NULL) 
 ```
 ]
@@ -547,7 +547,7 @@ frequency <- bind_rows(washington_words, jefferson_words) %>%
 
 ```{r}
 set.seed(234)
-slice_sample(frequency, n = 6) #<<
+slice_sample(frequency, n = 6) # dplyr 1.0.0 #<<
 ```
 
 
@@ -646,10 +646,10 @@ washington_words %>%
   count(word, sentiment, sort = TRUE) %>%
   ungroup() %>%
   group_by(sentiment) %>%
-  slice_max(order_by = n, n = 5) %>% #<<
+  slice_max(order_by = n, n = 5) %>% # dplyr 1.0.0 #<<
   ungroup() %>%
   mutate(word = reorder(word, n)) %>%
-  ggplot(aes(y = word, x = n, fill = sentiment)) +
+  ggplot(aes(y = word, x = n, fill = sentiment)) + # ggplot2 3.3.0 #<<
     geom_col(show.legend = FALSE) +
     facet_wrap(~sentiment, scales = "free_y") +
     labs(x = "Contribution to sentiment",
